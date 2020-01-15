@@ -36,16 +36,16 @@ public class RobotFight : MonoBehaviour
     //This method runs when the Play button is pressed, it initializes the Robot objects and the arrays
     public void Startup(){
         SceneManager.LoadScene("CharacterSelect");
-        Move[] MegatronMoves = {new Move("Drill", 12, 15, 100), new Move("Crunch", 15, 20, 90), new Move("Power Toss", 20, 10, 80), new Move("Bulldoze", 15, 10, 100)};
+        MegatronMoves = new Move[4] {new Move("Drill", 12, 15, 100), new Move("Crunch", 15, 20, 90), new Move("Power Toss", 20, 10, 80), new Move("Bulldoze", 15, 10, 100)};
 
-        Robot Megatron = new Robot("Megatron", Mathf.Round(Random.Range(0.0f, 50.0f)) + 50, Mathf.Round(Random.Range(0.0f, 9.0f)) + 6, MegatronMoves);
-        Robot Zagreb = new Robot("Zagreb", Mathf.Round(Random.Range(0.0f, 50.0f)) + 60, Mathf.Round(Random.Range(0.0f, 9.0f)) + 5, MegatronMoves);
+        Megatron = new Robot("Megatron", Mathf.Round(Random.Range(0.0f, 50.0f)) + 50, Mathf.Round(Random.Range(0.0f, 9.0f)) + 6, MegatronMoves);
+        Zagreb = new Robot("Zagreb", Mathf.Round(Random.Range(0.0f, 50.0f)) + 60, Mathf.Round(Random.Range(0.0f, 9.0f)) + 5, MegatronMoves);
 
-        //This array contains the Robot objects which the player will be able to choose from. It is referenced fine on line 50, but not on line 60
-        Robot[] contenders = {Megatron, Zagreb};
+        //This array contains the Robot objects which the player will be able to choose from. It is referenced fine on line 50, but not on line 61
+        contenders = new Robot[2] {Megatron, Zagreb};
 
         //This array isn't able to be referenced in the PickChar() method either
-        string[] Test = new string[3] {"one", "two", "three"};
+        Test = new string[3] {"one", "two", "three"};
 
         Debug.Log(contenders[0].Name);
         Debug.Log(Test[0]);
@@ -57,6 +57,7 @@ public class RobotFight : MonoBehaviour
     public void PickChar(int selectedNum) {
         PlayerNum = selectedNum;
         //This line should display the name of the chosen fighter as soon as it is clicked ingame, but it doesn't.
+        //Right here it gives the error: "NullReferenceException: Object reference not set to an instance of an object"
         Debug.Log(contenders[PlayerNum].Name);
         //This line should display the first member of the Test array, but doesn't
         Debug.Log(Test[0]);
